@@ -121,3 +121,46 @@ npm run dev
 7. **components**: Folder to store reusable components
 8. **assets**: Folder to store static assets like images, fonts, styles, etc.
 9. **public**: Folder to store static files that are not processed by Vite
+
+## Vue Directives
+
+- Used to add dynamic behavior to HTML elements
+- Prefixed with `v-` in the template
+- Examples: `v-if`, `v-for`, `v-bind`, `v-on`, `v-model`, etc.
+
+```html
+<script>
+  export default {
+    data() {
+      return {
+        isUserLoggedIn: true,
+        username: 'John Doe',
+        items: [
+          { id: 1, name: 'Item 1' },
+          { id: 2, name: 'Item 2' },
+          { id: 3, name: 'Item 3' },
+        ],
+        message: '',
+      };
+    },
+
+    methods: {
+      handleClick() {
+        alert('Button clicked!');
+      },
+    },
+  };
+</script>
+
+<template>
+  <div v-if="isUserLoggedIn">Welcome, {{ username }}</div>
+
+  <ul>
+    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+  </ul>
+
+  <input v-model="message" placeholder="Enter your message" />
+
+  <button v-on:click="handleClick">Click Me</button>
+</template>
+```
