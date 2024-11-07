@@ -1,15 +1,15 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const isUserLoggedIn = ref(true);
 const status = ref('active');
 const username = ref('John Doe');
-const games = ref([
+const tasks = ref([
   { id: 1, name: 'Baja 100' },
   { id: 2, name: 'GTA V' },
   { id: 3, name: 'Sega Classic' },
 ]);
-const game = ref('');
+const task = ref('');
 
 const handleStatus = () => {
   if (status.value === 'active') {
@@ -21,16 +21,29 @@ const handleStatus = () => {
   }
 };
 
-const addGame = () => {
-  if (game.value) {
-    games.value.push({ id: games.value.length + 1, name: game.value });
-    game.value = '';
+const addTask = () => {
+  if (task.value) {
+    tasks.value.push({ id: tasks.value.length + 1, name: task.value });
+    task.value = '';
   }
 };
 
 const deleteTask = (id) => {
-  games.value = games.value.filter((game) => game.id !== id);
+  tasks.value = tasks.value.filter((task) => task.id !== id);
 };
+
+onMounted(async () => {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    const data = await response.json();
+    tasks.value = data
+      .reverse()
+      .slice(0, 7)
+      .map((item) => ({ id: item.id, name: item.title }));
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+});
 </script>
 
 <template>
@@ -46,26 +59,26 @@ const deleteTask = (id) => {
     <p v-else>User is offline</p>
 
     <!-- @submit -> form submit event where prevent is e.preventDefault -->
-    <form @submit.prevent="addGame">
+    <form @submit.prevent="addTask">
       <!-- v-model -> two-way data binding -->
       <input
-        v-model="game"
-        id="game"
-        name="game"
-        placeholder="Enter new game"
+        v-model="task"
+        id="task"
+        name="task"
+        placeholder="Enter new task"
       />
       &nbsp;
       <!-- @ -> shorthand for v-on -->
       <button type="submit">Add</button>
     </form>
 
-    <!-- v-for -> loop through games -->
-    <h4>Games:</h4>
+    <!-- v-for -> loop through tasks -->
+    <h4>Tasks:</h4>
     <ul>
-      <li v-for="game in games" :key="game.id">
-        <span>{{ game.name }}</span>
+      <li v-for="task in tasks" :key="task.id">
+        <span>{{ task.name }}</span>
         &nbsp;
-        <button @click="deleteTask(game.id)">x</button>
+        <button @click="deleteTask(task.id)">x</button>
       </li>
     </ul>
 
