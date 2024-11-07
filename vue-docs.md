@@ -128,6 +128,30 @@ npm run dev
 - Prefixed with `v-` in the template
 - Examples: `v-if`, `v-for`, `v-bind`, `v-on`, `v-model`, etc.
 
+###### Directives in the Template
+
+```html
+<template>
+  <div v-if="isUserLoggedIn">Welcome, {{ username }}</div>
+
+  <ul>
+    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+  </ul>
+
+  <input v-model="message" placeholder="Enter your message" />
+
+  <button v-on:click="handleClick">Click Me</button>
+</template>
+```
+
+- **v-if**: Conditional rendering
+- **v-for**: List rendering
+- **:key**: Unique key for list items
+- **v-model**: Two-way data binding
+- **v-on:click**: Event listener
+
+###### Options API to set up data and methods
+
 ```html
 <script>
   export default {
@@ -151,16 +175,67 @@ npm run dev
     },
   };
 </script>
+```
 
-<template>
-  <div v-if="isUserLoggedIn">Welcome, {{ username }}</div>
+- **data()**: Returns an object with reactive properties
+- **methods**: Contains custom methods
+- **this**: Refers to the Vue instance
 
-  <ul>
-    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
-  </ul>
+###### Composition API to set up data and methods
 
-  <input v-model="message" placeholder="Enter your message" />
+```html
+<script>
+  import { ref } from 'vue';
 
-  <button v-on:click="handleClick">Click Me</button>
-</template>
+  export default {
+    setup() {
+      const isUserLoggedIn = ref(true);
+      const username = ref('John Doe');
+      const items = ref([
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' },
+      ]);
+      const message = ref('');
+
+      const handleClick = () => {
+        alert('Button clicked!');
+      };
+
+      return {
+        isUserLoggedIn,
+        username,
+        items,
+        message,
+        handleClick,
+      };
+    },
+  };
+</script>
+```
+
+- **ref()**: Creates a reactive reference to a value
+- **setup()**: Function that returns reactive properties and methods
+- **return**: Exposes the reactive properties and methods to the template
+- Without `ref()`, the properties will not be reactive
+
+###### Cleaner Composition API Example
+
+```html
+<script setup>
+  import { ref } from 'vue';
+
+  const isUserLoggedIn = ref(true);
+  const username = ref('John Doe');
+  const items = ref([
+    { id: 1, name: 'Item 1' },
+    { id: 2, name: 'Item 2' },
+    { id: 3, name: 'Item 3' },
+  ]);
+  const message = ref('');
+
+  const handleClick = () => {
+    alert('Button clicked!');
+  };
+</script>
 ```

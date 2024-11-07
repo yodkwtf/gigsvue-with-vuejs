@@ -1,36 +1,31 @@
-<script>
-export default {
-  data() {
-    return {
-      isUserLoggedIn: true,
-      status: 'active',
-      username: 'John Doe',
-      items: [
-        { id: 1, name: 'Item 1' },
-        { id: 2, name: 'Item 2' },
-        { id: 3, name: 'Item 3' },
-      ],
-      message: '',
-    };
-  },
+<script setup>
+import { ref } from 'vue';
 
-  methods: {
-    handleStatus() {
-      if (this.status === 'active') {
-        this.status = 'away';
-      } else if (this.status === 'away') {
-        this.status = 'offline';
-      } else {
-        this.status = 'active';
-      }
-    },
-  },
+const isUserLoggedIn = ref(true);
+const status = ref('active');
+const username = ref('John Doe');
+const items = ref([
+  { id: 1, name: 'Game 1' },
+  { id: 2, name: 'Game 2' },
+  { id: 3, name: 'Game 3' },
+]);
+const message = ref('');
+
+const handleStatus = () => {
+  if (status.value === 'active') {
+    status.value = 'away';
+  } else if (status.value === 'away') {
+    status.value = 'offline';
+  } else {
+    status.value = 'active';
+  }
 };
 </script>
 
 <template>
   <section>
-    <h1>OptionsAPI Example</h1>
+    <h1>CompositionAPI Example</h1>
+
     <!-- v-show -> show/hide element based on condition -->
     <div v-show="isUserLoggedIn">Welcome, {{ username }}</div>
 
@@ -62,7 +57,7 @@ section {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: black;
+  background-color: #222;
   padding: 2rem;
 }
 
