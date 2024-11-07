@@ -4,12 +4,12 @@ import { ref } from 'vue';
 const isUserLoggedIn = ref(true);
 const status = ref('active');
 const username = ref('John Doe');
-const items = ref([
-  { id: 1, name: 'Game 1' },
-  { id: 2, name: 'Game 2' },
-  { id: 3, name: 'Game 3' },
+const games = ref([
+  { id: 1, name: 'Baja 100' },
+  { id: 2, name: 'GTA V' },
+  { id: 3, name: 'Sega Classic' },
 ]);
-const message = ref('');
+const game = ref('');
 
 const handleStatus = () => {
   if (status.value === 'active') {
@@ -19,6 +19,17 @@ const handleStatus = () => {
   } else {
     status.value = 'active';
   }
+};
+
+const addGame = () => {
+  if (game.value) {
+    games.value.push({ id: games.value.length + 1, name: game.value });
+    game.value = '';
+  }
+};
+
+const deleteTask = (id) => {
+  games.value = games.value.filter((game) => game.id !== id);
 };
 </script>
 
@@ -34,19 +45,32 @@ const handleStatus = () => {
     <p v-else-if="status === 'away'">User is away</p>
     <p v-else>User is offline</p>
 
-    <!-- v-for -> loop through items -->
-    <ul>
-      <li v-for="item in items" :key="item.id">{{ item.name }}</li>
-    </ul>
+    <!-- @submit -> form submit event where prevent is e.preventDefault -->
+    <form @submit.prevent="addGame">
+      <!-- v-model -> two-way data binding -->
+      <input
+        v-model="game"
+        id="game"
+        name="game"
+        placeholder="Enter new game"
+      />
+      &nbsp;
+      <!-- @ -> shorthand for v-on -->
+      <button type="submit">Add</button>
+    </form>
 
-    <!-- v-model -> two-way data binding -->
-    <input v-model="message" placeholder="Enter your message" />
-    <small>{{ message }}</small>
+    <!-- v-for -> loop through games -->
+    <h4>Games:</h4>
+    <ul>
+      <li v-for="game in games" :key="game.id">
+        <span>{{ game.name }}</span>
+        &nbsp;
+        <button @click="deleteTask(game.id)">x</button>
+      </li>
+    </ul>
 
     <!-- v-on -> event listener -->
     <button v-on:click="handleStatus">Change Status</button>
-    <!-- @ -> shorthand for v-on -->
-    <button @click="handleStatus">Change Status</button>
   </section>
 </template>
 
@@ -57,11 +81,11 @@ section {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #222;
+  background-color: #111;
   padding: 2rem;
 }
 
-button {
+button[type='submit'] {
   padding: 0.5rem 1rem;
   background-color: #007bff;
   color: white;
@@ -70,7 +94,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button[type='submit']:hover {
   background-color: #0056b3;
 }
 
