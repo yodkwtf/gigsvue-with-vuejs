@@ -1,9 +1,5 @@
-<script setup>
-import OptionsAPI from './components/playground/OptionsAPI.vue';
-import CompositionAPI from './components/playground/CompositionAPI.vue';
-</script>
+<script setup></script>
 
 <template>
-  <OptionsAPI />
-  <CompositionAPI />
+  <h1 class="text-center text-2xl text-blue-500">JobVue</h1>
 </template>
