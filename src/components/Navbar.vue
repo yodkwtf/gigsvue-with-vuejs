@@ -18,6 +18,7 @@ import logo from '@/assets/logo.png';
             </span>
           </a>
           <div class="md:ml-auto">
+            <!-- TODO: make this as a configurable list -->
             <div class="flex space-x-2">
               <a
                 href="index.html"
