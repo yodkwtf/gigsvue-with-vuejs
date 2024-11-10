@@ -378,6 +378,11 @@ npm install vue-router
          name: 'home',
          component: HomeView,
        },
+       {
+         path: '/jobs',
+         name: 'jobs',
+         component: JobsView,
+       },
      ],
    });
 
