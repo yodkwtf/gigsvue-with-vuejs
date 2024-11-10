@@ -50,6 +50,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- VUE CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Vue Playground</title>
   </head>
@@ -128,6 +129,8 @@ npm run dev
 - Prefixed with `v-` in the template
 - Examples: `v-if`, `v-for`, `v-bind`, `v-on`, `v-model`, etc.
 
+#### Directives Usage
+
 ###### Directives in the Template
 
 ```html
@@ -150,7 +153,7 @@ npm run dev
 - **v-model**: Two-way data binding
 - **v-on:click**: Event listener
 
-###### Options API to set up data and methods
+##### Options API Example
 
 ```html
 <script>
@@ -181,7 +184,7 @@ npm run dev
 - **methods**: Contains custom methods
 - **this**: Refers to the Vue instance
 
-###### Composition API to set up data and methods
+##### Composition API Example
 
 ```html
 <script>
@@ -219,7 +222,7 @@ npm run dev
 - **return**: Exposes the reactive properties and methods to the template
 - Without `ref()`, the properties will not be reactive
 
-###### Cleaner Composition API Example
+###### Cleaner and Easier Syntax
 
 ```html
 <script setup>
@@ -326,20 +329,98 @@ We can add icons in a Vue project in various ways. Here is an example using prim
 
 1. Install PrimeIcons:
 
-```bash
-npm install primeicons
-```
+   ```bash
+   npm install primeicons
+   ```
 
 2. Import PrimeIcons in the main.js file:
 
-```js
-import 'primeicons/primeicons.css';
-```
+   ```js
+   import 'primeicons/primeicons.css';
+   ```
 
 3. Use the icons in the template:
 
-```html
-<template>
-  <i class="pi pi-check"></i>
-</template>
+   ```html
+   <template>
+     <i class="pi pi-check"></i>
+   </template>
+   ```
+
+## Vue Router
+
+- Official router for Vue.js
+- Allows navigation between different views in a Vue application
+- Supports nested routes, route parameters, and route guards
+- Can be set up manually or can be used as default while initializing a Vue project
+
+#### Installation
+
+```bash
+npm install vue-router
 ```
+
+#### Basic Setup
+
+1. Create a router instance:
+
+   ###### src/router/index.js
+
+   ```js
+   import { createRouter, createWebHistory } from 'vue-router';
+   import HomeView from './views/HomeView.vue';
+
+   const router = createRouter({
+     history: createWebHistory(import.meta.env.BASE_URL),
+     routes: [
+       {
+         path: '/',
+         name: 'home',
+         component: HomeView,
+       },
+     ],
+   });
+
+   export default router;
+   ```
+
+2. Wrap the app with the router:
+
+   ###### src/main.js
+
+   ```js
+   import { createApp } from 'vue';
+   import App from './App.vue';
+   import router from './router';
+
+   createApp(App).use(router).mount('#app');
+   ```
+
+3. Create a view component:
+
+   ###### src/views/HomeView.vue
+
+   ```html
+   <template>
+     <main>
+       <Hero />
+       <HomeCards />
+     </main>
+   </template>
+   ```
+
+4. Add the router-view in the App.vue file:
+
+   ###### src/App.vue
+
+   ```html
+   <script setup>
+     import Navbar from '@/components/Navbar.vue';
+     import { RouterView } from 'vue-router';
+   </script>
+
+   <template>
+     <Navbar />
+     <RouterView />
+   </template>
+   ```
