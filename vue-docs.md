@@ -414,7 +414,7 @@ npm install vue-router
    </template>
    ```
 
-4. Add the router-view in the App.vue file:
+4. Add the `RouterView` in the App.vue file:
 
    ###### src/App.vue
 
@@ -429,3 +429,24 @@ npm install vue-router
      <RouterView />
    </template>
    ```
+
+#### Router Links
+
+- Use the `RouterLink` component to navigate between routes
+- Can be styled using the `active-class` and `exact` props
+- Can also be used with dynamic routes and route parameters
+
+###### src/components/Navbar.vue
+
+```html
+<script setup>
+  import { RouterLink } from 'vue-router';
+</script>
+
+<template>
+  <nav>
+    <RouterLink to="/"> Home </RouterLink>
+    <RouterLink to="/jobs"> Jobs </RouterLink>
+  </nav>
+</template>
+```

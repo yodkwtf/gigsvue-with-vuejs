@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 // TODO: change logo
 import logo from '@/assets/logo.png';
 </script>
@@ -11,30 +12,33 @@ import logo from '@/assets/logo.png';
           class="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
         >
           <!-- Logo -->
-          <a class="flex flex-shrink-0 items-center mr-4" href="index.html">
+          <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
             <img class="h-10 w-auto" v-bind:src="logo" alt="JobVue" />
             <span class="hidden md:block text-white text-2xl font-bold ml-2">
               JobVue
             </span>
-          </a>
+          </RouterLink>
           <div class="md:ml-auto">
             <!-- TODO: make this as a configurable list -->
             <div class="flex space-x-2">
-              <a
-                href="/"
+              <RouterLink
+                to="/"
                 class="text-white bg-blue-900 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >Home</a
               >
-              <a
-                href="/jobs"
+                Home
+              </RouterLink>
+              <RouterLink
+                to="/jobs"
                 class="text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2"
-                >Jobs</a
               >
-              <a
-                href="/jobs/add"
+                Jobs
+              </RouterLink>
+              <RouterLink
+                to="/jobs/add"
                 class="text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2"
-                >Add Job</a
               >
+                Add Job
+              </RouterLink>
             </div>
           </div>
         </div>
