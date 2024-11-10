@@ -7,8 +7,7 @@ import JobListings from '@/components/JobListings.vue';
 
 <template>
   <Navbar />
-  <!-- TODO: Change props for branding -->
-  <Hero title="Test Title" subtitle="Test Subtitle" />
+  <Hero />
   <HomeCards />
-  <JobListings />
+  <JobListings :limit="3" :showButton="true" />
 </template>
