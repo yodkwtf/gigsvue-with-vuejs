@@ -451,6 +451,87 @@ npm install vue-router
 </template>
 ```
 
+#### Dynamic Routes
+
+- Use route parameters to create dynamic routes
+
+###### src/views/JobView.vue
+
+```html
+<template>
+  <div>
+    <h1>Single Job Page</h1>
+  </div>
+</template>
+```
+
+###### src/router/index.js
+
+```js
+import JobView from '@/views/JobView.vue';
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+    },
+    {
+      path: '/jobs',
+      name: 'jobs',
+      component: JobsView,
+    },
+    {
+      path: '/jobs/:id',
+      name: 'job',
+      component: JobView,
+    },
+  ],
+});
+```
+
+#### Not Found Page
+
+- Create a `NotFound` component for handling 404 errors
+- Add a wildcard route at the end of the routes array
+- Redirect to the `NotFound` component if no route matches
+- Use the `RouterLink` component to navigate to the home page
+
+###### src/views/NotFound.vue
+
+```html
+<template>
+  <div>
+    <h1>404 - Not Found</h1>
+    <RouterLink to="/">Go to Home</RouterLink>
+  </div>
+</template>
+```
+
+###### src/router/index.js
+
+```js
+import NotFound from '@/views/NotFound.vue';
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: 'not-found',
+      component: NoteFoundView,
+    },
+  ],
+});
+```
+
 #### Highlighting Active Links
 
 - Use `useRoute` to access the current route
