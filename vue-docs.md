@@ -450,3 +450,29 @@ npm install vue-router
   </nav>
 </template>
 ```
+
+#### Highlighting Active Links
+
+- Use `useRoute` to access the current route
+
+###### src/components/Navbar.vue
+
+```html
+<script setup>
+  import { RouterLink, useRoute } from 'vue-router';
+
+  const isActive = route => {
+    const currentRoute = useRoute();
+    return route === currentRoute.path;
+  })
+</script>
+
+<template>
+  <nav>
+    <RouterLink to="/" :class="{ active: isActive('/') }"> Home </RouterLink>
+    <RouterLink to="/jobs" :class="{ active: isActive('/jobs') }">
+      Jobs
+    </RouterLink>
+  </nav>
+</template>
+```

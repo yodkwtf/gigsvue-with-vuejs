@@ -1,5 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import { navLinks } from '@/config/constants';
+import NavLink from './NavLink.vue';
 // TODO: change logo
 import logo from '@/assets/logo.png';
 </script>
@@ -18,27 +20,14 @@ import logo from '@/assets/logo.png';
               JobVue
             </span>
           </RouterLink>
+
           <div class="md:ml-auto">
-            <!-- TODO: make this as a configurable list -->
             <div class="flex space-x-2">
-              <RouterLink
-                to="/"
-                class="text-white bg-blue-900 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-              >
-                Home
-              </RouterLink>
-              <RouterLink
-                to="/jobs"
-                class="text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2"
-              >
-                Jobs
-              </RouterLink>
-              <RouterLink
-                to="/jobs/add"
-                class="text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2"
-              >
-                Add Job
-              </RouterLink>
+              <NavLink
+                v-for="navLink in navLinks"
+                :key="navLink.path"
+                :navLink="navLink"
+              />
             </div>
           </div>
         </div>
