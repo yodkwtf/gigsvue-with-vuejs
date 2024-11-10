@@ -239,3 +239,107 @@ npm run dev
   };
 </script>
 ```
+
+## Props in Vue Components
+
+- Used to pass data from parent to child components
+- Declared in the child component and received as attributes
+- Props can be passed as strings, numbers, objects, arrays, etc.
+- Props are reactive and can be validated using type and default values
+- Props can be one-way or two-way (v-model)
+
+###### Parent Component
+
+```html
+<template>
+  <ChildComponent :title="pageTitle" :items="pageItems" />
+</template>
+```
+
+###### Child Component
+
+```html
+<script setup>
+  import { defineProps } from 'vue';
+
+  const props = defineProps({
+    title: String, // Prop type
+    showButton: {
+      // Prop with default value
+      type: Boolean,
+      default: true,
+    },
+  });
+
+  console.log(props.title);
+</script>
+
+<template>
+  <h1>{{ title }}</h1>
+  <button v-if="showButton">Click Me</button>
+</template>
+```
+
+- **defineProps()**: Function to define props and their types
+- **props**: Object containing the prop values
+- **String, Number, Boolean, Object, Array, Function, Symbol**: Prop types
+- **v-if**: Conditional rendering based on the prop value
+
+## Computing Properties in Vue
+
+- Reactive properties that update when dependent properties change
+- Can be computed using a function or getter/setter
+- Cached and only re-evaluated when necessary
+
+###### Computed Properties Example
+
+```html
+<script setup>
+  import { ref, computed } from 'vue';
+
+  const count = ref(0);
+
+  // computed property
+  const doubleCount = computed(() => count.value * 2);
+
+  const increment = () => {
+    count.value++;
+  };
+</script>
+
+<template>
+  <div>
+    <p>Count: {{ count }}</p>
+    <p>Double Count: {{ doubleCount }}</p>
+    <button @click="increment">Increment</button>
+  </div>
+</template>
+```
+
+- `doubleCount` - Computed property that doubles the value of `count`
+- Evaluated only when `count` changes
+- Similar to useEffect's dependency array in React
+
+## Vue Icons
+
+We can add icons in a Vue project in various ways. Here is an example using primeicons:
+
+1. Install PrimeIcons:
+
+```bash
+npm install primeicons
+```
+
+2. Import PrimeIcons in the main.js file:
+
+```js
+import 'primeicons/primeicons.css';
+```
+
+3. Use the icons in the template:
+
+```html
+<template>
+  <i class="pi pi-check"></i>
+</template>
+```
