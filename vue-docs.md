@@ -557,3 +557,52 @@ const router = createRouter({
   </nav>
 </template>
 ```
+
+## Fetching Data in Vue
+
+- Use the `fetch` API or `axios` to make HTTP requests in Vue
+- Fetch data in the `setup()` function using the `onMounted` lifecycle hook
+- Use `reactive` or `ref` to store the fetched data
+- Handle loading, error, and success states
+
+#### Fetching Data with Axios
+
+```bash
+npm install axios
+```
+
+###### src/views/JobsView.vue
+
+```html
+<script setup>
+  import axios from 'axios';
+  import { ref, onMounted } from 'vue';
+
+  const jobs = ref([]);
+  const loading = ref(false);
+  const error = ref(null);
+
+  onMounted(async () => {
+    loading.value = true;
+    try {
+      const response = await axios.get('https://api.example.com/jobs');
+      jobs.value = response.data;
+    } catch (err) {
+      error.value = err.message;
+    } finally {
+      loading.value = false;
+    }
+  });
+</script>
+
+<template>
+  <div>
+    <h1>Jobs</h1>
+    <div v-if="loading">Loading...</div>
+    <div v-else-if="error">{{ error }}</div>
+    <ul v-else>
+      <li v-for="job in jobs" :key="job.id">{{ job.title }}</li>
+    </ul>
+  </div>
+</template>
+```
