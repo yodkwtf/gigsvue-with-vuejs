@@ -606,3 +606,45 @@ npm install axios
   </div>
 </template>
 ```
+
+## `ref` vs `reactive` in Vue
+
+- Both `ref` and `reactive` are used to create reactive properties in Vue
+- `ref` is used for creating individual reactive values, for eg, separate fields for a form
+- `reactive` is used for creating reactive objects, for eg, a form object with multiple fields
+- `ref` is used for primitive values including boolean, strings, etc., while `reactive` is used for objects and arrays
+- `ref` has a `.value` property to access the value or reassign it while `reactive`does not use `.value` and cannot be reassigned directly
+
+#### `ref` Example
+
+```html
+<script setup>
+  import { ref } from 'vue';
+
+  const count = ref(0);
+
+  const increment = () => {
+    count.value++; // reassigning the value
+  };
+</script>
+```
+
+#### `reactive` Example
+
+```html
+<script setup>
+  import { reactive } from 'vue';
+
+  const form = reactive({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleSubmit = () => {
+    console.log(form.name, form.email, form.message);
+  };
+
+  // form.name = 'John Doe'; // Cannot reassign directly
+</script>
+```
