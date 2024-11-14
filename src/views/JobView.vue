@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <section class="bg-blue-50">
+  <section class="bg-teal-50">
     <div class="container m-auto py-10 px-6">
       <div class="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
         <main>
@@ -21,7 +21,7 @@
           </div>
 
           <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h3 class="text-blue-800 text-lg font-bold mb-6">
+            <h3 class="text-teal-800 text-lg font-bold mb-6">
               Job Description
             </h3>
 
@@ -32,7 +32,7 @@
               JavaScript frameworks such as Vue or Angular.
             </p>
 
-            <h3 class="text-blue-800 text-lg font-bold mb-2">Salary</h3>
+            <h3 class="text-teal-800 text-lg font-bold mb-2">Salary</h3>
 
             <p class="mb-4">$70k - $80K / Year</p>
           </div>
@@ -57,13 +57,13 @@
 
             <h3 class="text-xl">Contact Email:</h3>
 
-            <p class="my-2 bg-blue-100 p-2 font-bold">
+            <p class="my-2 bg-teal-100 p-2 font-bold">
               contact@newteksolutions.com
             </p>
 
             <h3 class="text-xl">Contact Phone:</h3>
 
-            <p class="my-2 bg-blue-100 p-2 font-bold">555-555-5555</p>
+            <p class="my-2 bg-teal-100 p-2 font-bold">555-555-5555</p>
           </div>
 
           <!-- Manage -->
@@ -71,11 +71,11 @@
             <h3 class="text-xl font-bold mb-6">Manage Job</h3>
             <a
               href="add-job.html"
-              class="bg-blue-500 hover:bg-blue-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+              class="bg-teal-500 hover:bg-teal-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
               >Edit Job</a
             >
             <button
-              class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+              class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
             >
               Delete Job
             </button>

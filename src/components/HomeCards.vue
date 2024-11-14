@@ -19,14 +19,14 @@ import Card from './Card.vue';
             Browse Jobs
           </RouterLink>
         </Card>
-        <Card bg="bg-blue-100">
+        <Card bg="bg-teal-100">
           <h2 class="text-2xl font-bold">For Employers</h2>
           <p class="mt-2 mb-4">
             List your job to find the perfect developer for the role
           </p>
           <RouterLink
             to="/jobs/add"
-            class="inline-block bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600"
+            class="inline-block bg-teal-500 text-white rounded-lg px-4 py-2 hover:bg-teal-600"
           >
             Add Job
           </RouterLink>

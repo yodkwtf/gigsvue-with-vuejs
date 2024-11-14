@@ -16,7 +16,7 @@ defineProps({
   <RouterLink
     :to="navLink.path"
     :class="[
-      isActiveLink(navLink.path) ? 'bg-blue-900' : 'hover:bg-gray-900',
+      isActiveLink(navLink.path) ? 'bg-teal-900' : 'hover:bg-gray-900',
       'text-white rounded-md px-3 py-2',
     ]"
   >
