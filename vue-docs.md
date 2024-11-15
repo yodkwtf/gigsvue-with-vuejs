@@ -648,3 +648,27 @@ npm install axios
   // form.name = 'John Doe'; // Cannot reassign directly
 </script>
 ```
+
+## Proxying API Requests in Vue
+
+- Use proxying to avoiding making multiple requests to the API using localhost
+- Set up a proxy in the `vite.config.js` file
+
+#### Proxy Setup
+
+###### vite.config.js
+
+```js
+export default defineConfig({
+  server: {
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000', // API server
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
+});
+```
