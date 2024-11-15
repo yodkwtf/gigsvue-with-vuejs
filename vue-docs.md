@@ -672,3 +672,49 @@ export default defineConfig({
   },
 });
 ```
+
+## Toast Notifications
+
+- Use a toast library like `vue-toastification` to show notifications in a Vue app
+- Install the library and set up the toast container
+
+#### Installation
+
+```bash
+npm install vue-toastification@next
+```
+
+#### Setup
+
+Import the toast container in the main.js file:
+
+```js
+import Toast from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
+```
+
+Add the toast container to the app:
+
+```js
+createApp(App).use(router).use(Toast).mount('#app');
+```
+
+#### Usage
+
+Use the `useToast` hook to show notifications:
+
+```html
+<script setup>
+  import { useToast } from 'vue-toastification';
+
+  const toast = useToast();
+
+  const showToast = () => {
+    toast.success('Notification message');
+  };
+</script>
+
+<template>
+  <button @click="showToast">Show Toast</button>
+</template>
+```
