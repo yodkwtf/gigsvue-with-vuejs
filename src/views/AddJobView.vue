@@ -1,9 +1,11 @@
 <script setup>
 import { reactive } from 'vue';
+import axios from 'axios';
+import router from '@/router';
 
 const form = reactive({
   type: 'Full-Time',
-  name: '',
+  title: '',
   description: '',
   salary: '',
   location: '',
@@ -14,6 +16,17 @@ const form = reactive({
     contactPhone: '',
   },
 });
+
+const handleSubmit = async () => {
+  try {
+    const response = await axios.post('/api/jobs', form);
+    alert('Job added successfully'); // TODO: Replace with toast notification
+    router.push(`/jobs/${response.data.id}`);
+  } catch (error) {
+    console.log('Error adding a new job: ' + error);
+    // TODO: Replace with toast notification
+  }
+};
 </script>
 
 <template>
@@ -22,7 +35,7 @@ const form = reactive({
       <div
         class="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
       >
-        <form>
+        <form @submit.prevent="handleSubmit">
           <h2 class="text-3xl text-center font-semibold mb-6">Add Job</h2>
 
           <div class="mb-4">
@@ -44,11 +57,9 @@ const form = reactive({
           </div>
 
           <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2"
-              >Job Listing Name</label
-            >
+            <label class="block text-gray-700 font-bold mb-2">Job Title</label>
             <input
-              v-model="form.name"
+              v-model="form.title"
               type="text"
               id="name"
               name="name"
