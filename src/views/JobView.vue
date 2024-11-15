@@ -3,6 +3,7 @@ import { reactive, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
+import BackButton from '@/components/BackButton.vue';
 
 const route = useRoute();
 const jobId = route.params.id; // the param name in jobs.json is 'id'
@@ -25,6 +26,8 @@ onMounted(async () => {
 </script>
 
 <template>
+  <BackButton />
+
   <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
     <PulseLoader color="teal" />
   </div>
