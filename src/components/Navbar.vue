@@ -2,8 +2,6 @@
 import { RouterLink } from 'vue-router';
 import { navLinks } from '@/config/constants';
 import NavLink from './NavLink.vue';
-// TODO: change logo
-import logo from '@/assets/logo.png';
 </script>
 
 <template>
@@ -13,11 +11,9 @@ import logo from '@/assets/logo.png';
         <div
           class="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
         >
-          <!-- Logo -->
           <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
-            <img class="h-10 w-auto" v-bind:src="logo" alt="ProjectVue" />
             <span class="hidden md:block text-white text-2xl font-bold ml-2">
-              ProjectVue
+              GigsVue
             </span>
           </RouterLink>
 

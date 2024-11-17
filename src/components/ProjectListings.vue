@@ -52,12 +52,14 @@ onMounted(async () => {
     </div>
   </section>
 
-  <section v-if="showButton" class="m-auto max-w-lg my-10 px-6">
-    <RouterLink
-      to="/projects"
-      class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
-    >
-      View All Projects
-    </RouterLink>
+  <section v-if="showButton" class="bg-green-50">
+    <div v-if="showButton" class="m-auto max-w-lg py-10 px-6">
+      <RouterLink
+        to="/projects"
+        class="block bg-teal-500 text-white text-center py-4 px-6 rounded-xl hover:bg-teal-600 transition duration-200"
+      >
+        View All Projects
+      </RouterLink>
+    </div>
   </section>
 </template>
