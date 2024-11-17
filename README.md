@@ -4,7 +4,7 @@ GigsVue is a freelance job hunting and posting platform built using Vue.js. It a
 
 ## Live Preview
 
-Please visit [GigsVue - Live](https://cardzire-dk.netlify.app) to see the site's live preview.
+Please visit [GigsVue - Live](https://gigsvue.netlify.app) to see the site's live preview.
 
 ![GigsVue Preview](./public/cover.png)
 
