@@ -1,16 +1,20 @@
 <script setup>
-import { reactive } from 'vue';
 import router from '@/router';
-import { useToast } from 'vue-toastification';
 import axios from 'axios';
+import { onMounted, reactive } from 'vue';
+import { useRoute } from 'vue-router';
+import { useToast } from 'vue-toastification';
+
+const route = useRoute();
+const projectID = route.params.id;
 
 const form = reactive({
-  type: 'Full-Time',
+  type: 'Hourly',
   title: '',
   description: '',
-  salary: '',
+  budget: '',
   location: '',
-  company: {
+  client: {
     name: '',
     description: '',
     contactEmail: '',
@@ -18,18 +22,45 @@ const form = reactive({
   },
 });
 
+const state = reactive({
+  project: {},
+  isLoading: true,
+});
+
 const toast = useToast();
 
 const handleSubmit = async () => {
   try {
-    const response = await axios.post('/api/jobs', form);
-    toast.success('Job added successfully');
-    router.push(`/jobs/${response.data.id}`);
+    const response = await axios.put(`/api/projects/${projectID}`, form);
+    toast.success('Project updated successfully');
+    router.push(`/projects/${response.data.id}`);
   } catch (error) {
-    console.log('Error adding a new job: ' + error);
-    toast.error('Error adding a new job: ' + error.message);
+    console.log('Error updating project: ' + error);
+    toast.error('Error updating project: ' + error.message);
   }
 };
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`/api/projects/${projectID}`);
+    state.project = response.data;
+    // Populate the form with the project data
+    form.type = state.project.type;
+    form.title = state.project.title;
+    form.description = state.project.description;
+    form.budget = state.project.budget;
+    form.location = state.project.location;
+    form.client.name = state.project.client.name;
+    form.client.description = state.project.client.description;
+    form.client.contactEmail = state.project.client.contactEmail;
+    form.client.contactPhone = state.project.client.contactPhone;
+  } catch (error) {
+    console.log('Error fetching project: ' + error);
+    toast.error('Error fetching project: ' + error.message);
+  } finally {
+    state.isLoading = false;
+  }
+});
 </script>
 
 <template>
@@ -39,11 +70,11 @@ const handleSubmit = async () => {
         class="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
       >
         <form @submit.prevent="handleSubmit">
-          <h2 class="text-3xl text-center font-semibold mb-6">Add Job</h2>
+          <h2 class="text-3xl text-center font-semibold mb-6">Edit Project</h2>
 
           <div class="mb-4">
             <label for="type" class="block text-gray-700 font-bold mb-2"
-              >Job Type</label
+              >Project Type</label
             >
             <select
               v-model="form.type"
@@ -52,22 +83,24 @@ const handleSubmit = async () => {
               class="border rounded w-full py-2 px-3"
               required
             >
-              <option value="Full-Time">Full-Time</option>
-              <option value="Part-Time">Part-Time</option>
-              <option value="Remote">Remote</option>
-              <option value="Internship">Internship</option>
+              <option value="Hourly">Hourly</option>
+              <option value="One-Time">One-Time</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Others">Others</option>
             </select>
           </div>
 
           <div class="mb-4">
-            <label class="block text-gray-700 font-bold mb-2">Job Title</label>
+            <label class="block text-gray-700 font-bold mb-2"
+              >Project Title</label
+            >
             <input
               v-model="form.title"
               type="text"
               id="name"
               name="name"
               class="border rounded w-full py-2 px-3 mb-2"
-              placeholder="eg. Beautiful Apartment In Miami"
+              placeholder="eg. Build a website"
               required
             />
           </div>
@@ -81,33 +114,21 @@ const handleSubmit = async () => {
               name="description"
               class="border rounded w-full py-2 px-3"
               rows="4"
-              placeholder="Add any job duties, expectations, requirements, etc"
+              placeholder="Add any project duties, expectations, requirements, etc"
             ></textarea>
           </div>
 
           <div class="mb-4">
-            <label for="type" class="block text-gray-700 font-bold mb-2"
-              >Salary</label
-            >
-            <select
-              v-model="form.salary"
-              id="salary"
-              name="salary"
-              class="border rounded w-full py-2 px-3"
+            <label class="block text-gray-700 font-bold mb-2">Budget</label>
+            <input
+              v-model="form.budget"
+              type="text"
+              id="budget"
+              name="budget"
+              class="border rounded w-full py-2 px-3 mb-2"
+              placeholder="eg. $100/Hourly"
               required
-            >
-              <option value="Under $50K">under $50K</option>
-              <option value="$50K - $60K">$50 - $60K</option>
-              <option value="$60K - $70K">$60 - $70K</option>
-              <option value="$70K - $80K">$70 - $80K</option>
-              <option value="$80K - $90K">$80 - $90K</option>
-              <option value="$90K - $100K">$90 - $100K</option>
-              <option value="$100K - $125K">$100 - $125K</option>
-              <option value="$125K - $150K">$125 - $150K</option>
-              <option value="$150K - $175K">$150 - $175K</option>
-              <option value="$175K - $200K">$175 - $200K</option>
-              <option value="Over $200K">Over $200K</option>
-            </select>
+            />
           </div>
 
           <div class="mb-4">
@@ -118,40 +139,40 @@ const handleSubmit = async () => {
               id="location"
               name="location"
               class="border rounded w-full py-2 px-3 mb-2"
-              placeholder="Company Location"
+              placeholder="Client Location"
               required
             />
           </div>
 
-          <h3 class="text-2xl mb-5">Company Info</h3>
+          <h3 class="text-2xl mb-5">Client Info</h3>
 
           <div class="mb-4">
-            <label for="company" class="block text-gray-700 font-bold mb-2"
-              >Company Name</label
+            <label for="client" class="block text-gray-700 font-bold mb-2"
+              >Client Name</label
             >
             <input
-              v-model="form.company.name"
+              v-model="form.client.name"
               type="text"
-              id="company"
-              name="company"
+              id="client"
+              name="client"
               class="border rounded w-full py-2 px-3"
-              placeholder="Company Name"
+              placeholder="Client Name"
             />
           </div>
 
           <div class="mb-4">
             <label
-              for="company_description"
+              for="client_description"
               class="block text-gray-700 font-bold mb-2"
-              >Company Description</label
+              >Client Description</label
             >
             <textarea
-              v-model="form.company.description"
-              id="company_description"
-              name="company_description"
+              v-model="form.client.description"
+              id="client_description"
+              name="client_description"
               class="border rounded w-full py-2 px-3"
               rows="4"
-              placeholder="What does your company do?"
+              placeholder="What does your client do?"
             ></textarea>
           </div>
 
@@ -162,7 +183,7 @@ const handleSubmit = async () => {
               >Contact Email</label
             >
             <input
-              v-model="form.company.contactEmail"
+              v-model="form.client.contactEmail"
               type="email"
               id="contact_email"
               name="contact_email"
@@ -178,7 +199,7 @@ const handleSubmit = async () => {
               >Contact Phone</label
             >
             <input
-              v-model="form.company.contactPhone"
+              v-model="form.client.contactPhone"
               type="tel"
               id="contact_phone"
               name="contact_phone"
@@ -192,7 +213,7 @@ const handleSubmit = async () => {
               class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Add Job
+              Update Project
             </button>
           </div>
         </form>

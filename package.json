@@ -1,5 +1,5 @@
 {
-  "name": "job-vue",
+  "name": "project-vue",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "json-server --watch src/config/jobs.json --port 5000"
+    "server": "json-server --watch src/config/projects.json --port 5000"
   },
   "dependencies": {
     "axios": "^1.7.7",

@@ -4,11 +4,11 @@ import { defineProps } from 'vue';
 defineProps({
   title: {
     type: String,
-    default: 'Become a Pro Developer',
+    default: 'Pick the work you love',
   },
   subtitle: {
     type: String,
-    default: 'Find the software developer job that fits your skills and needs',
+    default: 'Find the best freelance projects and work with top clients.',
   },
 });
 </script>

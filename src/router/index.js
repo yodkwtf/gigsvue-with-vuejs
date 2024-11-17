@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
-import JobsView from '@/views/JobsView.vue';
-import JobView from '@/views/JobView.vue';
-import AddJobView from '@/views/AddJobView.vue';
-import EditJobView from '@/views/EditJobView.vue';
-import NotFoundView from '@/views/NotFoundView.vue';
+import Home from '@/views/Home.vue';
+import Projects from '@/views/Projects.vue';
+import Project from '@/views/Project.vue';
+import AddProject from '@/views/AddProject.vue';
+import EditProject from '@/views/EditProject.vue';
+import NotFound from '@/views/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,32 +12,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: Home,
     },
     {
-      path: '/jobs',
-      name: 'jobs',
-      component: JobsView,
+      path: '/projects',
+      name: 'projects',
+      component: Projects,
     },
     {
-      path: '/jobs/:id',
-      name: 'job',
-      component: JobView,
+      path: '/projects/:id',
+      name: 'project',
+      component: Project,
     },
     {
-      path: '/jobs/edit/:id',
-      name: 'edit-job',
-      component: EditJobView,
+      path: '/projects/edit/:id',
+      name: 'edit-project',
+      component: EditProject,
     },
     {
-      path: '/jobs/add',
-      name: 'add-job',
-      component: AddJobView,
+      path: '/projects/add',
+      name: 'add-project',
+      component: AddProject,
     },
     {
       path: '/:catchAll(.*)',
       name: 'not-found',
-      component: NotFoundView,
+      component: NotFound,
     },
   ],
 });

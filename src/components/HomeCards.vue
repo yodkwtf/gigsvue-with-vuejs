@@ -8,27 +8,28 @@ import Card from './Card.vue';
     <div class="container-xl lg:container m-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
         <Card>
-          <h2 class="text-2xl font-bold">For Developers</h2>
+          <h2 class="text-2xl font-bold">For Freelancers</h2>
           <p class="mt-2 mb-4">
-            Browse our Vue jobs and start your career today
+            Find the best freelance projects and work with top clients
           </p>
           <RouterLink
-            to="/jobs"
+            to="/projects"
             class="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
           >
-            Browse Jobs
+            Browse Projects
           </RouterLink>
         </Card>
         <Card bg="bg-teal-100">
-          <h2 class="text-2xl font-bold">For Employers</h2>
+          <h2 class="text-2xl font-bold">For Clients</h2>
           <p class="mt-2 mb-4">
-            List your job to find the perfect developer for the role
+            Find the best freelancers and hire the right talent for your
+            projects
           </p>
           <RouterLink
-            to="/jobs/add"
+            to="/projects/add"
             class="inline-block bg-teal-500 text-white rounded-lg px-4 py-2 hover:bg-teal-600"
           >
-            Add Job
+            Add Project
           </RouterLink>
         </Card>
       </div>

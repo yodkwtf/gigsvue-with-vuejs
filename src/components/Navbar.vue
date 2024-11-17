@@ -15,9 +15,9 @@ import logo from '@/assets/logo.png';
         >
           <!-- Logo -->
           <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
-            <img class="h-10 w-auto" v-bind:src="logo" alt="JobVue" />
+            <img class="h-10 w-auto" v-bind:src="logo" alt="ProjectVue" />
             <span class="hidden md:block text-white text-2xl font-bold ml-2">
-              JobVue
+              ProjectVue
             </span>
           </RouterLink>
 
