@@ -1,0 +1,88 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Build a Vue Dashboard",
+      "type": "One-Time",
+      "description": "Develop a responsive Vue.js dashboard for tracking user analytics, integrating with REST APIs, and creating interactive charts.",
+      "location": "Remote",
+      "budget": "$3,000 - $4,000",
+      "client": {
+        "name": "AnalyticsHub",
+        "description": "AnalyticsHub specializes in business intelligence tools for enterprises. They aim to provide actionable insights with modern web solutions.",
+        "contactEmail": "client@analyticshub.com",
+        "contactPhone": "555-555-1212"
+      }
+    },
+    {
+      "type": "Monthly",
+      "title": "E-Commerce Frontend Development",
+      "description": "Create a Vue-based frontend for an e-commerce platform with features like product filtering, cart management, and payment gateway integration.",
+      "budget": "$8,000 - $10,000",
+      "location": "On-site in New York, NY",
+      "client": {
+        "name": "ShopEase Inc.",
+        "description": "ShopEase Inc. is a fast-growing e-commerce company focused on delivering seamless shopping experiences.",
+        "contactEmail": "support@shopease.com",
+        "contactPhone": "555-555-1313"
+      },
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "title": "Interactive Portfolio Website",
+      "type": "Hourly",
+      "description": "Design and develop a personal portfolio site using Vue.js. Features include an interactive gallery, blog, and contact form.",
+      "location": "Remote",
+      "budget": "$1,500 - $2,000",
+      "client": {
+        "name": "Freelancer Solutions",
+        "description": "Freelancer Solutions provides resources for freelancers to enhance their online presence.",
+        "contactEmail": "info@freelancersolutions.com",
+        "contactPhone": "555-555-1414"
+      }
+    },
+    {
+      "id": "4",
+      "title": "Custom CMS for Blogging Platform",
+      "type": "One-Time",
+      "description": "Develop a Vue.js-based custom CMS for a blogging platform. Includes features for post management, user roles, and SEO optimization.",
+      "location": "Remote",
+      "budget": "$40 - $60/hour",
+      "client": {
+        "name": "BlogMaster Inc.",
+        "description": "BlogMaster Inc. specializes in creating tools for bloggers to grow their audience.",
+        "contactEmail": "contact@blogmaster.com",
+        "contactPhone": "555-555-1515"
+      }
+    },
+    {
+      "id": "5",
+      "title": "Real-Time Chat Application",
+      "type": "Hourly",
+      "description": "Build a real-time chat application with Vue.js and Firebase. Features include user authentication, live updates, and custom themes.",
+      "location": "On-site in Austin, TX",
+      "budget": "$4,000 - $5,000",
+      "client": {
+        "name": "Chatify Inc.",
+        "description": "Chatify Inc. provides modern communication tools for businesses and individuals.",
+        "contactEmail": "hello@chatify.com",
+        "contactPhone": "555-555-1616"
+      }
+    },
+    {
+      "id": "6",
+      "title": "Event Management Platform",
+      "type": "Monthly",
+      "description": "Develop a web application for event planning and ticket management using Vue.js and Node.js. Includes monthly maintenance and updates.",
+      "location": "Remote",
+      "budget": "$3,500 - $4,500/month",
+      "client": {
+        "name": "EventSync",
+        "description": "EventSync creates innovative solutions for event organizers to manage and promote events effectively.",
+        "contactEmail": "events@eventsync.com",
+        "contactPhone": "555-555-1717"
+      }
+    }
+  ]
+}
