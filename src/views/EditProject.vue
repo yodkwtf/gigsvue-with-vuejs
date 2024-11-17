@@ -1,4 +1,5 @@
 <script setup>
+import { API_URL } from '@/config/constants';
 import router from '@/router';
 import axios from 'axios';
 import { onMounted, reactive } from 'vue';
@@ -31,7 +32,7 @@ const toast = useToast();
 
 const handleSubmit = async () => {
   try {
-    const response = await axios.put(`/api/projects/${projectID}`, form);
+    const response = await axios.put(`${API_URL}/${projectID}`, form);
     toast.success('Project updated successfully');
     router.push(`/projects/${response.data.id}`);
   } catch (error) {
@@ -42,7 +43,7 @@ const handleSubmit = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`/api/projects/${projectID}`);
+    const response = await axios.get(`${API_URL}/${projectID}`);
     state.project = response.data;
     // Populate the form with the project data
     form.type = state.project.type;

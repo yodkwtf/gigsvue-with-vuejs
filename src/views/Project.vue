@@ -5,6 +5,7 @@ import { useToast } from 'vue-toastification';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
 import BackButton from '@/components/BackButton.vue';
+import { API_URL } from '@/config/constants';
 
 const route = useRoute();
 const router = useRouter();
@@ -24,7 +25,7 @@ const deleteProject = async () => {
     );
     if (!isConfirmed) return;
 
-    await axios.delete(`/api/projects/${projectId}`);
+    await axios.delete(`${API_URL}/${projectId}`);
     toast.success('Project deleted successfully');
     router.push('/projects');
   } catch (error) {
@@ -35,7 +36,7 @@ const deleteProject = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`/api/projects/${projectId}`);
+    const response = await axios.get(`${API_URL}/${projectId}`);
     state.project = response.data;
   } catch (error) {
     console.error(`Error fetching project by projectId ${projectId}: ${error}`);

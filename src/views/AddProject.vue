@@ -3,6 +3,7 @@ import { reactive } from 'vue';
 import router from '@/router';
 import { useToast } from 'vue-toastification';
 import axios from 'axios';
+import { API_URL } from '@/config/constants';
 
 const form = reactive({
   type: 'Hourly',
@@ -22,7 +23,7 @@ const toast = useToast();
 
 const handleSubmit = async () => {
   try {
-    const response = await axios.post('/api/projects', form);
+    const response = await axios.post(API_URL, form);
     toast.success('Project added successfully');
     router.push(`/projects/${response.data.id}`);
   } catch (error) {
